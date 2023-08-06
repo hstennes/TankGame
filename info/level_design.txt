@@ -1,0 +1,52 @@
+--LEVEL DESIGN INFORMATION--
+
+Each GameObject in a level has a representation in the level image. You can specify where to spawn a GameObject by coloring
+a pixel in the image with its color code, with each pixel representing a 32 * 32 pixel area. The RGB color codes are as follows:
+
+Absolute codes:
+Wall: 255, 255, 255
+Player: 0, 0, 255
+Land mine: 255, 0, 255
+Turret: 252, 0, 0
+Checkpoint: 255, 255, 0
+Level finish: 0, 255, 0
+Ammo box: 0, 255, 255
+Life heart: 255, 0, 0
+
+Variable codes:
+Red tank: 254, bullet type, door link (0 if not connected to door)
+Yellow tank: 253, bullet type, door link
+Purple tank: 251, bullet type, door link
+Black tank: 250, bullet type, door link
+White tank: 249, bullet type, door link
+Battle door: 255, 254, door link (1 - 255)
+Bullet: 0, 0, quantity (see explanation below)
+
+How to use bullet codes:
+
+To specify the types and numbers of available bullets at in the level, draw pixels with red and green values of 0 and blue values
+representing the desired number of bullets. For the starting bullet numbers, pixel (0, 0) will specify the number of basic bullets, (0, 1) will 
+specify the number of fast bullets, (0, 2) will specify the number of EMP (freeze) bullets, (0, 3) will specify the number of bouncy bullets, 
+and (0, 4) will specify the number of targeting bullets. For ammo box bullets, (x, y - 1) will specify the number of basic bullets, 
+(x + 1, y - 1) is for fast bullets, (x + 1, y) is for EMP bullets, (x + 1, y + 1) is for bouncy bullets, and (x, y + 1) is for targeting 
+bullets, where (x, y) is the pixel location of the box.
+
+Bullet allotment guidelines:
+
+Use this table to calculate the number of bullets you should include in your level based on the types of bullets you want to include and the tanks
+to be destroyed in the level.  These guidelines are based around an intermediate level, so add or subtract bullets to each cell to change the 
+difficulty to easy or hard, respectively. 
+
+TANKS! | Red Tank | Purple Tank | Yellow Tank | Black Tank |
+____________________________________________________________       
+Basic  |    2     |      2      |      3      |     2      |
+____________________________________________________________
+Fast   |    2     |      2      |      3      |     1      |
+____________________________________________________________
+Freeze |    3     |      3      |      4      |     2      |
+____________________________________________________________
+Bouncy |    2     |      2      |      2      |     1      |
+____________________________________________________________
+Target |    1     |      1      |      1      |     1      |
+____________________________________________________________		
+Difficulty: Intermediate

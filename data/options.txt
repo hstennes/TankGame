@@ -1,0 +1,4 @@
+camera_shake: 1
+driving_mode: 0
+show_fps: 1
+mouse_lock: 0
